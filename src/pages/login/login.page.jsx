@@ -1,25 +1,20 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
-import User from '../../common/models/User';
-import {Link, useNavigate} from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import {Link, useNavigate} from "react-router-dom";
+import {setCurrentUser} from "../../redux/store/actions/users";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import User from "../../common/models/User";
 import AuthService from '../../service/AuthService.service';
-import './register.page.css'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faUserCircle} from "@fortawesome/free-solid-svg-icons/faUserCircle";
 
-
-
-const Register = () => {
-    const [user, setUser] = useState(new User("", ""));
+const Login = () => {
+    const [user, setUser] = useState(new User("", "", ""));
     const [loading, setLoading] = useState(false); //sets a loading state to let the user know the page is loading
     const [submitted, setSubmitted] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const [checked, setChecked] = useState(false);
 
     const currentUser = useSelector((state) => state.user);
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (currentUser?.id) {
@@ -37,33 +32,26 @@ const Register = () => {
         });
     };
 
-    const handleRegister = (e) => {
+    const handleLogin = (e) => {
         e.preventDefault();
-        //stops the register creds being displayed in url
+        //stops the login creds being displayed in url
 
         setSubmitted(true);
         if (!user.username || !user.password) {
             return; //checks if username and password fields are not empty
         }
         setLoading(true);
-        console.log(user);
+
         //Authenitcation next
-        AuthService.register(user)
-            .then((_) => {
+        AuthService.login(user)
+            .then((response) => {
                 //set user in session
-                navigate("/login");
+                dispatch(setCurrentUser(response.data));
+                navigate("/dashboard");
             })
             .catch((error) => {
                 console.log(error);
-                // Todo:v
-                //add custom user error pages later. Check if error is 409 => username password not valid. setsErrorMsg to something like username not found
-                //don't expose the users creds by allowing
-                if (error?.response?.status === 409) {
-                    // 409
-                    setErrorMessage("username or password is not valid");
-                } else {
-                    setErrorMessage("Unexpected error. Try again.");
-                }
+                setErrorMessage("USERNAME OR PASSWORD IS NOT VALID!!!");
                 setLoading(false);
             });
     };
@@ -71,13 +59,12 @@ const Register = () => {
     return (
         <div className="container mt-5">
             <div className="card ms-auto me-auto p-3 shadow-lg custom-card">
-                <h3>Sign up</h3>{" "}
-                {/*NoT really happy with this but style later if you get a chance*/}
+                <h3>Sign in</h3> {/*NoT really happy with this but style later if you get a chance*/}
                 {errorMessage && (
                     <div className="alert alert-danger">{errorMessage}</div>
                 )}
                 <form
-                    onSubmit={(e) => handleRegister(e)}
+                    onSubmit={(e) => handleLogin(e)}
                     className={submitted ? "was-validated" : ""}
                     noValidate // does not validate the form
                 >
@@ -113,34 +100,20 @@ const Register = () => {
                         <div className="invalid-feedback">PASSWORD IS REQUIRED!!</div>
                     </div>
 
-                    {/*<div className="form-group">
-                        /*PASSWORD*
-                        <input
-                            type="checkbox"
-                            name="checkbox"
-                            value={user.isJobSeeker}
-                            onChange={handleChecked}
-
-                        />
-                        /*DISPLAYS ANY ERROR MESSAGE RELATING TO FIELD*
-                        <div className="invalid-feedback">PASSWORD IS REQUIRED!!</div>
-                    </div>
-                        */}
-
                     {/*Add the button*/}
-                    <button className="btn btn-primary w-100 mt-3">Sign up</button>
+                    <button className="btn btn-primary w-100 mt-3">Sign in</button>
                 </form>
                 <Link
-                    to="/login"
+                    to="/register"
                     className="btn btn-link"
                     style={{ color: "darkgray" }}
                 >
-                    I have an Account
+                    Create an Account??
                 </Link>
             </div>
         </div>
-
     );
 };
 //} think this goes here. EDIT: nvm
-export default Register;
+
+export default Login;
