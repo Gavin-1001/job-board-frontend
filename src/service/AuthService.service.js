@@ -10,7 +10,7 @@ class AuthService{
     }
 
     register(user){
-        return axios.post(BASE_URL + '/signin', user);
+        return axios.post(BASE_URL + '/register', user);
     }
 
 }
