@@ -51,7 +51,7 @@ const Register = () => {
         AuthService.register(user)
             .then((_) => {
                 //set user in session
-                navigate("/login");
+                navigate("/signin");
             })
             .catch((error) => {
                 console.log(error);
@@ -131,7 +131,7 @@ const Register = () => {
                     <button className="btn btn-primary w-100 mt-3">Sign up</button>
                 </form>
                 <Link
-                    to="/login"
+                    to="/signin"
                     className="btn btn-link"
                     style={{ color: "darkgray" }}
                 >

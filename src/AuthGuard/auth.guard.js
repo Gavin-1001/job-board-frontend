@@ -7,7 +7,7 @@ export const AuthGuard=({children, roles}) => {
 
     const authorize = () => {
         if(!currentUser){
-            return( <Navigate to={{pathname: '/login'}} /> );
+            return( <Navigate to={{pathname: '/signin'}} /> );
         }
 
         if(roles?.indexOf(currentUser.role) === -1){

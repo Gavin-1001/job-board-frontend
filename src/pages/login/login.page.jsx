@@ -42,12 +42,14 @@ const Login = () => {
         }
         setLoading(true);
 
-        //Authenitcation next
+        //Authentication next
         AuthService.login(user)
             .then((response) => {
                 //set user in session
                 dispatch(setCurrentUser(response.data));
-                navigate("/dashboard");
+                if(currentUser.role === 'Employer') {
+                    navigate("/EmployerDashboard");
+                }
             })
             .catch((error) => {
                 console.log(error);
