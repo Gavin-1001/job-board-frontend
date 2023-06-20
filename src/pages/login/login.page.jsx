@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import User from "../../common/models/User";
 import AuthService from '../../service/AuthService.service';
 
+
 const Login = () => {
     const [user, setUser] = useState(new User("", "", ""));
     const [loading, setLoading] = useState(false); //sets a loading state to let the user know the page is loading
@@ -23,7 +24,7 @@ const Login = () => {
     }, []);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setUser((previousState) => {
             return {
                 ...previousState,
@@ -47,8 +48,10 @@ const Login = () => {
             .then((response) => {
                 //set user in session
                 dispatch(setCurrentUser(response.data));
-                if(currentUser.role === 'Employer') {
-                    navigate("/EmployerDashboard");
+                if(response.data.role === 'EMPLOYER') {
+                    navigate('/employerDashboard')
+                }else if(response.data.role === 'USER'){
+                    navigate('/dashboard');
                 }
             })
             .catch((error) => {
@@ -77,6 +80,7 @@ const Login = () => {
                             type="text"
                             name="username"
                             className="form-control"
+                            autoComplete="off"
                             placeholder="Enter your username here"
                             value={user.username}
                             onChange={(e) => handleChange(e)}
@@ -108,7 +112,7 @@ const Login = () => {
                 <Link
                     to="/register"
                     className="btn btn-link"
-                    style={{ color: "darkgray" }}
+                    style={{color: "darkgray"}}
                 >
                     Create an Account??
                 </Link>

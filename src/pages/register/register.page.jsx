@@ -89,6 +89,7 @@ const Register = () => {
                             name="username"
                             className="form-control"
                             placeholder="Enter your username here"
+                            autoComplete="none"
                             value={user.username}
                             onChange={(e) => handleChange(e)}
                             required
