@@ -9,6 +9,8 @@ import Login from "./pages/login/login.page";
 import {AuthGuard} from "./AuthGuard/auth.guard";
 import {Role} from "./common/models/Role";
 import Logout from "./pages/Logout";
+import NotFound from "./pages/NotFound/NotFound";
+import PostJob from "./pages/PostAJob/PostJob";
 
 
 function App() {
@@ -16,6 +18,7 @@ function App() {
         <div className="App">
             <BrowserRouter>
                 <Navbar/>
+                {/*<Sidebar />*/}
                 <div className="container">
                     <Routes>
                         <Route path="/signin" element={<Login/>}/>
@@ -38,7 +41,13 @@ function App() {
                             }
                         />
 
+                        <Route path="/post-a-job" element={<AuthGuard role={[Role.EMPLOYER]}>
+                            <PostJob/>
+                        </AuthGuard>}
+                        />
+
                         <Route path="/logout" element={<Logout/>}/>
+                        <Route path="*" element={<NotFound/>}/>
                     </Routes>
                 </div>
             </BrowserRouter>

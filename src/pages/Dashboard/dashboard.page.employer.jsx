@@ -1,10 +1,15 @@
-const EmployerDashboard = () =>{
+
+
+import React from 'react';
+import EmployerSidebar from "../../components/Sidebar/EmployerSidebar";
+
+const Sidebar = () => {
 
     return (
         <div>
-            <h3>Employer</h3>
+            <EmployerSidebar />
         </div>
-    )
-}
+    );
+};
 
-export default EmployerDashboard;
+export default Sidebar;

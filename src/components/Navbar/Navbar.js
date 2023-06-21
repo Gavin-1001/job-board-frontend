@@ -47,19 +47,19 @@ const Navbar = () => {
             </NavLink>
           </li>
         </div>
-        {/*LOGOUT*/}
+        {/*LOGOUT
         {currentUser && (
             <div className="navbar-nav ms-auto">
-                {/* <li className="nav-item">
+                * <li className="nav-item">
             <NavLink to="/profile">{currentUser.name}</NavLink>
-          </li> */}
+          </li> *
                 <li className="nav-item">
                     <Link to="/logout" className="nav-link" onClick={() => logout()}>
                         Logout
                     </Link>
                 </li>
             </div>
-        )}
+        )} */}
     </nav>
   );
 };
