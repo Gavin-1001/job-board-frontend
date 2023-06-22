@@ -22,3 +22,9 @@
     border-radius: 4px;
     cursor: pointer;
 }
+
+.job-form-select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}

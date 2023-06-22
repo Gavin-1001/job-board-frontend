@@ -2,11 +2,19 @@ import Sidebar from "../../Dashboard/dashboard.page.employer";
 import '../../../App.css';
 import {useEffect, useRef, useState} from "react";
 import './postJob.css';
+import JobService from "../../../service/JobService.service";
+import Job from "../../../common/models/Job";
+import {useNavigate} from "react-router-dom";
 
 
 const PostJob = () => {
-    const userRef = useRef();
     const [submitted, setSubmitted] = useState(false);
+    const [job, setJob] = useState(new Job("", "", "", "", "", "", "", ""));
+    const [loading, setLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+
+    const userRef = useRef();
+    const navigate = useNavigate();
 
     useEffect(() => {
         userRef.current.focus();
@@ -15,7 +23,7 @@ const PostJob = () => {
     const [formData, setFormData] = useState({
         jobTitle: '',
         jobDescription: '',
-        salary: '',
+        job_salary: '',
         jobLocation: '',
         startDate: '',
         jobQualification: '',
@@ -29,17 +37,27 @@ const PostJob = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // You can perform any necessary actions with the form data here
-        console.log(formData);
 
         setSubmitted(true)
+        // if(!job.jobTitle || !job.jobDescription || !job.salary || !job.salary || !job.jobLocation || !job.startDate || !job.jobQualification || !job.jobCategory){
+        //     return;
+        // }
+        console.log("HERE")
+        setLoading(true)
         console.log(formData);
-
+        JobService.postJob(formData).then((_) =>{
+            navigate("/about");
+        }).catch((error) => {
+            console.log("THERE WAS AN ERROR");
+            setErrorMessage("There was an error");
+        })
+        console.log(formData+"has been sent");
 
         // Reset the form fields
         setFormData({
             jobTitle: '',
             jobDescription: '',
-            salary: '',
+            job_salary: '',
             jobLocation: '',
             startDate: '',
             jobQualification: '',
@@ -65,6 +83,7 @@ const PostJob = () => {
                             required
                             className="job-form-input"
                         />
+                    <div className="invalid-feedback">Job Title is required</div>
                     </div>
 
                     <div>
@@ -79,21 +98,23 @@ const PostJob = () => {
                             required
                             className="job-form-input"
                         />
+                        <div className="invalid-feedback">Job Description cannot be empty</div>
                     </div>
 
                     <div>
-                        <label htmlFor="salary" className="job-form-label">
+                        <label htmlFor="jobSalary" className="job-form-label">
                             Salary:
                         </label>
                         <input
                             type="text"
-                            id="salary"
-                            name="salary"
-                            value={formData.salary}
+                            id="jobSalary"
+                            name="jobSalary"
+                            value={formData.jobSalary}
                             onChange={handleChange}
                             required
                             className="job-form-input"
                         />
+                        <div className="invalid-feedback">Salary cannot be empty</div>
                     </div>
 
                     <div>
@@ -109,21 +130,70 @@ const PostJob = () => {
                             required
                             className="job-form-input"
                         />
+                        <div className="invalid-feedback">Location cannot be empty</div>
                     </div>
 
                     <div>
-                        <label htmlFor="startDate" className="job-form-label">
+                        <label htmlFor="jobStartDate" className="job-form-label">
                             Start Date:
                         </label>
                         <input
                             type="date"
-                            id="startDate"
-                            name="startDate"
-                            value={formData.startDate}
+                            id="jobStartDate"
+                            name="jobStartDate"
+                            value={formData.jobStartDate}
                             onChange={handleChange}
                             required
                             className="job-form-input"
                         />
+                        <div className={"invalid-feedback"}>Start date must be provided</div>
+                    </div>
+
+                    <div>
+                        <label htmlFor="jobQualifications" className="job-form-label">
+                            Job Category:
+                        </label>
+                        <select
+                            id="jobQualifications"
+                            name="jobQualifications"
+                            value={formData.jobQualifications}
+                            onChange={handleChange}
+                            required
+                            className="job-form-select"
+                        >
+                            <option value="">Select a Qualification</option>
+                            <option value="None">None</option>
+                            <option value="Leaving Certificate">Leaving Certificate</option>
+                            <option value="Diploma">Higher Diploma</option>
+                            <option value="Bachelors">Bachelors Degree </option>
+                            <option value="Masters">Masters Degree</option>
+                            <option value="Experience">Experience</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label htmlFor="jobCategory" className="job-form-label">
+                            Job Category:
+                        </label>
+                        <select
+                            id="jobCategory"
+                            name="jobCategory"
+                            value={formData.jobCategory}
+                            onChange={handleChange}
+                            required
+                            className="job-form-select"
+                        >
+                            <option value="">Select a category</option>
+                            <option value="IT&TComm">Information Technology and Telecommunications </option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Nat/Soc Science">Natural and Social Science </option>
+                            <option value="Education">Teaching and Educational </option>
+                            <option value="Nursing">Nursing and Midwifery </option>
+                            <option value="Sales/Market">Sales, Marketing</option>
+                            <option value="Media">Artistic, Literary and Media</option>
+                            <option value="Bus/Admin">Business, Research and Administrative</option>
+                        </select>
                     </div>
 
                     <button type="submit" className="job-form-submit">
