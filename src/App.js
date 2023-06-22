@@ -31,12 +31,17 @@ function App() {
                                 </AuthGuard>
                             }
                         />
-
                         <Route
                             path="/dashboard"
                             element={
                                 <AuthGuard role={[Role.USER]}>
                                     <UserDashboard/>
+                                </AuthGuard>
+                            }
+                        />
+                        <Route path="/createJob" element={
+                                <AuthGuard role={[Role.EMPLOYER]}>
+                                    <PostJob/>
                                 </AuthGuard>
                             }
                         />
