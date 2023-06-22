@@ -1,55 +1,25 @@
+
 .navbar {
-    background-color: #f2f2f2;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-decoration: black; /*changes color of the text*/
-    margin-bottom: 2.5rem;
-  }
-  
-  .nav-list {
-    list-style-type: none;
-    /*margin: 0;*/
-    margin-left: 210px;
-    margin-top: auto;
-    padding: 0;
-    display: flex;
-  }
-  
-  .nav-item {
-    margin-right: 10px;
-    list-style-type: none;
-    float:left;
-  }
-  
-  .nav-item a {
-    text-decoration: none;
-    color: #333;
-    padding: 5px 10px;
-  }
-  
-  .nav-item a:hover {
-    background-color: #333;
-    color: #fff;
-  }
+  background-color: #f2f2f2;
+  padding: 10px;
+}
 
-  .auth-buttons {
-    display: flex;
-  }
-  
-  .login-button,
-  .signup-button {
-    padding: 5px 10px;
-    margin-left: 10px;
-    border: none;
-    background-color: #333;
-    color: #fff;
-    cursor: pointer;
+.list {
+  display: flex;
+  list-style-type: none;
+  margin-left: 210px;
+  margin-top: 10px;
+  padding: 0;
+  justify-content: flex-end/* Align links to the right */
+}
 
-  }
-  
-  .login-button:hover,
-  .signup-button:hover {
-    background-color: #555;
-  }
+.listItem {
+  margin-right: 10px;
+}
+
+.link {
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+}

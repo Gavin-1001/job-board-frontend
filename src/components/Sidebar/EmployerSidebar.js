@@ -21,8 +21,8 @@ const EmployerSidebar = () => {
         <div className="sidebar">
             <ul>
                 <li><NavLink to="/createJob">Create Job</NavLink></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
+                <li><NavLink to="/jobListings">Job Search</NavLink></li>
+                <li><NavLink to="/jobsAdvertisement">My Jobs</NavLink></li>
                 <li><a href="#">Contact</a></li>
 
 

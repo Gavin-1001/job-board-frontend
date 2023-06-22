@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_API_URL } from "../common/constants";
+import {BASE_API_URL} from "../api/baseUrl";
 
 const BASE_URL = BASE_API_URL + '/api/auth';
 

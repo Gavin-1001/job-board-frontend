@@ -60,7 +60,7 @@ const Register = () => {
                 //don't expose the users creds by allowing
                 if (error?.response?.status === 409) {
                     // 409
-                    setErrorMessage("username or password is not valid");
+                    setErrorMessage("username or password is not valid, user already exists with this username"); //remove the "user already exists with this username" for testing only
                 } else {
                     setErrorMessage("Unexpected error. Try again.");
                 }
