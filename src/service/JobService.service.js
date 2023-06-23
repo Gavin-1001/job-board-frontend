@@ -11,6 +11,10 @@ class JobServiceService {
         return axios.post(BASE_URL + '/create', job, {headers: authHeaders()});
     }
 
+    getAllJobs(){
+        return axios.get(BASE_URL+'/getAllJobs', {headers: authHeaders()});
+    }
+
 
 
 }

@@ -15,6 +15,7 @@ import About from './pages/About/About';
 import JobListings from "./pages/Jobs/JobListings/JobListings";
 import JobAdvertisement from "./pages/Jobs/MyJobsAdvertised/JobAdvertisement";
 import Navbar from "./components/Navbar/Navbar";
+import Home from "./pages/Home/Home";
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
 
             <div className="container">
                 <Routes>
+                    <Route path="/" element={<Home />}/>
                     <Route path="/signin" element={<Login/>}/>
                     <Route path="/register" element={<Register/>}/>
                     <Route

@@ -4,7 +4,10 @@ import {useEffect, useRef, useState} from "react";
 import './postJob.css';
 import JobService from "../../../service/JobService.service";
 import Job from "../../../common/models/Job";
-import {useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import {useSelector} from "react-redux";
 
 
 const PostJob = () => {
@@ -12,12 +15,13 @@ const PostJob = () => {
     const [job, setJob] = useState(new Job("", "", "", "", "", "", "", ""));
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const currentUser = useSelector((state) => state.user);
 
     const userRef = useRef();
     const navigate = useNavigate();
 
     useEffect(() => {
-        userRef.current.focus();
+        //userRef.current.focus();
     }, [])
 
     const [formData, setFormData] = useState({
@@ -31,27 +35,39 @@ const PostJob = () => {
     });
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setFormData({...formData, [e.target.name]: e.target.value});
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        // You can perform any necessary actions with the form data here
 
-        setSubmitted(true)
-        // if(!job.jobTitle || !job.jobDescription || !job.salary || !job.salary || !job.jobLocation || !job.startDate || !job.jobQualification || !job.jobCategory){
-        //     return;
-        // }
-        console.log("HERE")
-        setLoading(true)
-        console.log(formData);
-        JobService.postJob(formData).then((_) =>{
-            navigate("/about");
-        }).catch((error) => {
-            console.log("THERE WAS AN ERROR");
-            setErrorMessage("There was an error");
-        })
-        console.log(formData+"has been sent");
+        e.preventDefault();
+
+        setSubmitted(true);
+
+        if (!currentUser.id) {
+            return <Navigate to={{pathname: "/login"}}/>;
+        }
+        if (
+            !job.jobTitle ||
+            !job.jobDescription ||
+            !job.jobSalary ||
+            !job.jobLocation ||
+            !job.jobQualifications ||
+            !job.jobStartDate ||
+            !job.jobCategory
+        ) {
+
+
+            JobService.postJob(formData).then((_) => {
+                console.log(formData);
+                navigate("/jobListings")
+            })
+                .catch((err) => {
+                    setErrorMessage("Unexpected error occurred.");
+                    console.log(err);
+                })
+            console.log(JSON.stringify(formData) + "has been sent");
+        }
 
         // Reset the form fields
         setFormData({
@@ -70,36 +86,40 @@ const PostJob = () => {
                 <Sidebar/>
                 <form onSubmit={handleSubmit} className="job-form-container">
                     <div>
-                        <label htmlFor="jobTitle" className="job-form-label">
-                            Job Title:
-                        </label>
-                        <input
-                            type="text"
-                            id="jobTitle"
-                            name="jobTitle"
-                            value={formData.jobTitle}
-                            onChange={handleChange}
-                            ref={userRef}
-                            required
-                            className="job-form-input"
-                        />
-                    <div className="invalid-feedback">Job Title is required</div>
+
+                        <div>
+                            <label htmlFor="jobTitle" className="job-form-label">
+                                jobTitle:
+                            </label>
+                            <input
+                                type="text"
+                                id="jobTitle"
+                                name="jobTitle"
+                                value={formData.jobTitle}
+                                onChange={handleChange}
+                                required
+                                className="job-form-input"
+                            />
+                            <div className="invalid-feedback">jobTitle cannot be empty</div>
+                        </div>
+
+                        <div>
+                            <label htmlFor="jobDescription" className="job-form-label">
+                                Job Description:
+                            </label>
+                            <textarea
+                                id="jobDescription"
+                                name="jobDescription"
+                                value={formData.jobDescription}
+                                onChange={handleChange}
+                                required
+                                className="job-form-input"
+
+                            ><div className="align-items-start">€</div></textarea>
+                        </div>
+                        <div className="invalid-feedback">Job Title is required</div>
                     </div>
 
-                    <div>
-                        <label htmlFor="jobDescription" className="job-form-label">
-                            Job Description:
-                        </label>
-                        <textarea
-                            id="jobDescription"
-                            name="jobDescription"
-                            value={formData.jobDescription}
-                            onChange={handleChange}
-                            required
-                            className="job-form-input"
-                        />
-                        <div className="invalid-feedback">Job Description cannot be empty</div>
-                    </div>
 
                     <div>
                         <label htmlFor="jobSalary" className="job-form-label">
@@ -165,7 +185,7 @@ const PostJob = () => {
                             <option value="None">None</option>
                             <option value="Leaving Certificate">Leaving Certificate</option>
                             <option value="Diploma">Higher Diploma</option>
-                            <option value="Bachelors">Bachelors Degree </option>
+                            <option value="Bachelors">Bachelors Degree</option>
                             <option value="Masters">Masters Degree</option>
                             <option value="Experience">Experience</option>
                             <option value="Other">Other</option>
@@ -185,11 +205,11 @@ const PostJob = () => {
                             className="job-form-select"
                         >
                             <option value="">Select a category</option>
-                            <option value="IT&TComm">Information Technology and Telecommunications </option>
+                            <option value="IT&TComm">Information Technology and Telecommunications</option>
                             <option value="Engineering">Engineering</option>
-                            <option value="Nat/Soc Science">Natural and Social Science </option>
-                            <option value="Education">Teaching and Educational </option>
-                            <option value="Nursing">Nursing and Midwifery </option>
+                            <option value="Nat/Soc Science">Natural and Social Science</option>
+                            <option value="Education">Teaching and Educational</option>
+                            <option value="Nursing">Nursing and Midwifery</option>
                             <option value="Sales/Market">Sales, Marketing</option>
                             <option value="Media">Artistic, Literary and Media</option>
                             <option value="Bus/Admin">Business, Research and Administrative</option>
@@ -202,7 +222,8 @@ const PostJob = () => {
                 </form>
             </div>
         </div>
-    );
+    )
+
 };
 
 export default PostJob;
