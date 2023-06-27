@@ -2,9 +2,22 @@
 import React from "react";
 import './Navbar.css'
 
-import {NavLink} from "react-router-dom";
+import {Link, NavLink, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {clearCurrentUser} from "../../redux/store/actions/users";
 
  const Navbar = ({ links }) => {
+
+     const currentUser = useSelector((state) => state.user);
+     const dispatch = useDispatch();
+     const navigate = useNavigate();
+
+     const logout = () => {
+         dispatch(clearCurrentUser());
+         navigate("/login");
+     };
+
+
     return (
         <nav className="navbar">
             <ul className="list">
@@ -16,6 +29,11 @@ import {NavLink} from "react-router-dom";
                     </li>
                 ))}
             </ul>
+            <li className="nav-item">
+                <Link to="/logout" className="nav-link" onClick={() => logout()}>
+                    Logout
+                </Link>
+            </li>
         </nav>
     );
 };

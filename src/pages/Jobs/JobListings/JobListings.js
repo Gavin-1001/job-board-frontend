@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import './../../../App.css'
 import Sidebar from "../../Dashboard/dashboard.page.employer";
 import JobService from "../../../service/JobService.service";
-import axios from "axios";
 import JobCard from "./JobCard";
 import './JobListings.css'
 

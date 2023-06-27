@@ -5,9 +5,10 @@ const JobCard = ({ job }) => {
         <div style={styles.card}>
             <h3>{job.jobTitle}</h3>
             <p>{job.jobDescription}</p>
-            <p>{job.jobSalary}</p>
+            <p>{"€"+job.jobSalary}</p>
             <p>{job.jobLocation}</p>
-            {/* Additional job details */}
+            <p>{job.jobStartDate}</p>
+            <p>{job.jobCategory}</p>
         </div>
     );
 };
@@ -18,6 +19,9 @@ JobCard.propTypes = {
         jobDescription: PropTypes.string.isRequired,
         jobLocation: PropTypes.string.isRequired,
         jobSalary: PropTypes.string.isRequired,
+        jobStartDate: PropTypes.string.isRequired,
+        jobQualifications: PropTypes.string.isRequired,
+        jobCategory: PropTypes.string.isRequired
         // Additional job details
         // Todo Add rest of class elements to here ->
         // and in interpolation

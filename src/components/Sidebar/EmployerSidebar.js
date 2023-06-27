@@ -8,14 +8,14 @@ import {clearCurrentUser} from "../../redux/store/actions/users";
 const EmployerSidebar = () => {
 
 
-    const currentUser = useSelector((state) => state.user);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-    const logout = () => {
-        dispatch(clearCurrentUser());
-        navigate("/login");
-    };
+     const currentUser = useSelector((state) => state.user);
+    // const dispatch = useDispatch();
+    // const navigate = useNavigate();
+    //
+    // const logout = () => {
+    //     dispatch(clearCurrentUser());
+    //     navigate("/login");
+    // };
 
     return (
         <div className="sidebar">
@@ -34,11 +34,11 @@ const EmployerSidebar = () => {
                     {/* <li className="nav-item">
             <NavLink to="/profile">{currentUser.name}</NavLink>
           </li> */}
-                    <li className="nav-item">
-                        <Link to="/logout" className="nav-link" onClick={() => logout()}>
-                            Logout
-                        </Link>
-                    </li>
+                    {/*<li className="nav-item">*/}
+                    {/*    <Link to="/logout" className="nav-link" onClick={() => logout()}>*/}
+                    {/*        Logout*/}
+                    {/*    </Link>*/}
+                    {/*</li>*/}
                 </div>
             )}
         </div>

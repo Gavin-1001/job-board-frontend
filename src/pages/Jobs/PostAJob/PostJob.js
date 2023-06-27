@@ -5,8 +5,6 @@ import './postJob.css';
 import JobService from "../../../service/JobService.service";
 import Job from "../../../common/models/Job";
 import {Navigate, useNavigate} from "react-router-dom";
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
 import {useSelector} from "react-redux";
 
 
@@ -32,6 +30,7 @@ const PostJob = () => {
         startDate: '',
         jobQualification: '',
         jobCategory: '',
+        jobCompanyName: '',
     });
 
     const handleChange = (e) => {
@@ -54,7 +53,8 @@ const PostJob = () => {
             !job.jobLocation ||
             !job.jobQualifications ||
             !job.jobStartDate ||
-            !job.jobCategory
+            !job.jobCategory ||
+            !job.jobCompanyName
         ) {
 
 
@@ -78,6 +78,8 @@ const PostJob = () => {
             startDate: '',
             jobQualification: '',
             jobCategory: '',
+            jobCompanyName: '',
+
         });
     };
     return (
@@ -152,6 +154,23 @@ const PostJob = () => {
                         />
                         <div className="invalid-feedback">Location cannot be empty</div>
                     </div>
+
+                    <div>
+                        <label htmlFor="jobCompanyName" className="job-form-label">
+                            Job Company Name:
+                        </label>
+                        <input
+                            type="text"
+                            id="jobCompanyName"
+                            name="jobCompanyName"
+                            value={formData.jobCompanyName}
+                            onChange={handleChange}
+                            required
+                            className="job-form-input"
+                        />
+                        <div className="invalid-feedback">Company Name cannot be empty</div>
+                    </div>
+
 
                     <div>
                         <label htmlFor="jobStartDate" className="job-form-label">

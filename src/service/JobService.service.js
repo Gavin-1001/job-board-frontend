@@ -16,6 +16,12 @@ class JobServiceService {
     }
 
 
+    deleteJob(job){
+        // eslint-disable-next-line no-template-curly-in-string
+        return axios.delete(BASE_URL + '/delete/' + job.id, {headers: authHeaders()});
+    }
+
+
 
 }
 
