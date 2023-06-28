@@ -5,7 +5,7 @@ import {authHeaders} from "../common/models/AuthHeaders";
 
 const BASE_URL = BASE_API_URL + '/api/jobs';
 
-class JobServiceService {
+class JobService {
 
     postJob(job){
         return axios.post(BASE_URL + '/create', job, {headers: authHeaders()});
@@ -21,8 +21,12 @@ class JobServiceService {
         return axios.delete(BASE_URL + '/delete/' + job.id, {headers: authHeaders()});
     }
 
+    editJob(job){
+        return axios.put(BASE_URL + "/update/" + job.id, {headers: authHeaders()});
+    }
 
 
+/// todo -> delete works correctly, need to add update modal, and only show jobs based on user logged in on backend///
 }
 
-export default new JobServiceService();
+export default new JobService();

@@ -1,8 +1,8 @@
 import React from "react";
 import './EmployerSidebar.css'
-import {Link, NavLink, useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {clearCurrentUser} from "../../redux/store/actions/users";
+import { NavLink } from "react-router-dom";
+import {useSelector} from "react-redux";
+
 
 
 const EmployerSidebar = () => {

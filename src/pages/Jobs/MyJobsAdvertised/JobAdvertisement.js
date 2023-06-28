@@ -4,6 +4,7 @@ import {useEffect, useRef, useState} from "react";
 import './JobAdvertisements.css'
 import jobService from "../../../service/JobService.service";
 import JobDeleteModal from './../../../components/Modals/JobDeleteModal';
+import {JobEditModal} from "../../../components/Modals/JobEditModal";
 
 
 const JobAdvertisement = () => {
@@ -13,6 +14,7 @@ const JobAdvertisement = () => {
     const [errorMessage, setErrorMessage] = useState([]);
 
     const deleteJobComponent = useRef();
+    const editJobComponent = useRef()
 
 
     useEffect(() => {
@@ -31,16 +33,18 @@ const JobAdvertisement = () => {
         });
     };
 
-    const updateJobRequest = (job) => {
-        console.log("update job component");
-    };
-
-
     const deleteJobRequest = (job) => {
         setJobSelect(job);
         console.log(job);
         deleteJobComponent.current?.showDeleteModal();
     };
+
+    const updateJobRequest = (item) => {
+        //setJobSelect(job);
+        setJobSelect(Object.assign({}, item));
+        //console.log("is being edited: "+job);
+        editJobComponent.current?.showEditModal();
+    }
 
 
 
@@ -102,6 +106,9 @@ const JobAdvertisement = () => {
             <JobDeleteModal
                 ref={deleteJobComponent}
                 onConfirmed={() => deleteJob()}
+            />
+            <JobEditModal  ref={editJobComponent}
+                onConfirmed={() => updateJobRequest()}
             />
 
         </div>
