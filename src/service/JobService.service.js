@@ -22,11 +22,12 @@ class JobService {
     }
 
     editJob(job){
-        return axios.put(BASE_URL + "/update/" + job.id, {headers: authHeaders()});
+        return axios.put(BASE_URL + '/update/' + job.id, {headers: authHeaders()});
     }
 
 
 /// todo -> delete works correctly, need to add update modal, and only show jobs based on user logged in on backend///
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default new JobService();

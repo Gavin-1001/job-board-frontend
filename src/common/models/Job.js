@@ -1,5 +1,5 @@
 export default class Job{
-    constructor(id, jobTitle, jobDescription, jobSalary, jobLocation, jobStartDate, jobQualifications, jobCategory, jobCompanyName, employerAuthor){
+    constructor(id, jobTitle, jobDescription, jobSalary, jobLocation, jobStartDate, jobQualifications, jobCategory, jobCompanyName){
         this.jobTitle = jobTitle;
         this.jobDescription = jobDescription
         this.jobSalary = jobSalary;
@@ -9,6 +9,5 @@ export default class Job{
         this.jobCategory = jobCategory;
         this.jobCompanyName = jobCompanyName;
         this.id = id;
-        this.employerAuthor = employerAuthor;
     }
 }

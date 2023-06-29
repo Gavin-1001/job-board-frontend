@@ -43,7 +43,7 @@ const JobAdvertisement = () => {
         //setJobSelect(job);
         setJobSelect(Object.assign({}, item));
         //console.log("is being edited: "+job);
-        editJobComponent.current?.showEditModal();
+        editJobComponent.current?.showEmployeeModal();
     }
 
 
@@ -85,6 +85,7 @@ const JobAdvertisement = () => {
                                             <button
                                                 className="btn btn-primary me-1"
                                                 onClick={() => updateJobRequest(item)}
+                                                //onClick={() => console.log(item.id)}
                                             >
                                                 EDIT
                                             </button>
