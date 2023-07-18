@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const JobCard = ({ job }) => {
     return (
-        <div style={styles.card}>
+        <div className="card">
             <h3>{job.jobTitle}</h3>
             <p>{job.jobDescription}</p>
             <p>{"€"+job.jobSalary}</p>
@@ -28,20 +28,6 @@ JobCard.propTypes = {
     }).isRequired
 };
 
-const styles = {
-    cardContainer: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        marginTop: '20px'
-    },
-    card: {
-        border: '1px solid #ccc',
-        borderRadius: '4px',
-        padding: '10px',
-        margin: '10px',
-        width: '300px'
-    }
-};
+
 
 export default JobCard;

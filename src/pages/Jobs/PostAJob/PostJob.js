@@ -88,7 +88,6 @@ const PostJob = () => {
                 <Sidebar/>
                 <form onSubmit={handleSubmit} className="job-form-container">
                     <div>
-
                         <div>
                             <label htmlFor="jobTitle" className="job-form-label">
                                 jobTitle:
@@ -190,7 +189,7 @@ const PostJob = () => {
 
                     <div>
                         <label htmlFor="jobQualifications" className="job-form-label">
-                            Job Category:
+                            Job Qualification:
                         </label>
                         <select
                             id="jobQualifications"

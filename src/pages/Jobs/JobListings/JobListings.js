@@ -36,33 +36,16 @@ const JobListings = () => {
             <div className="container">
                 <div className="moveIn">
                     <h3>Job Listings</h3>
-                    <div style={styles.cardContainer}>
+                    <div className="cardContainer">
                         {jobs.map((job, index) => (
                             <JobCard key={index} job={job} />
                         ))}
                     </div>
-
-
                 </div>
                 <Sidebar/>
             </div>
         );
     };
 
-const styles = {
-    cardContainer: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        marginTop: '20px'
-    },
-    card: {
-        border: '1px solid #ccc',
-        borderRadius: '4px',
-        padding: '10px',
-        margin: '10px',
-        width: '300px'
-    }
-};
 
 export default JobListings;

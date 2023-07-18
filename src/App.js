@@ -16,6 +16,7 @@ import JobListings from "./pages/Jobs/JobListings/JobListings";
 import JobAdvertisement from "./pages/Jobs/MyJobsAdvertised/JobAdvertisement";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
+import Footer from "./components/Footer/Footer";
 
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
 
             <div className="container">
                 <Routes>
-                    <Route path="/" element={<Home />}/>
+                    <Route path="/" element={<Home/>}/>
                     <Route path="/signin" element={<Login/>}/>
                     <Route path="/register" element={<Register/>}/>
                     <Route
@@ -71,6 +72,7 @@ function App() {
                     <Route path="/about" element={<About/>}/>
                     <Route path="*" element={<NotFound/>}/>
                 </Routes>
+                <Footer/>
             </div>
         </BrowserRouter>
     )

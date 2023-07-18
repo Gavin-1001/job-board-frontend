@@ -1,0 +1,1 @@
+todos -> need to fix footer on JobAdvertisement.js and JobListings.js

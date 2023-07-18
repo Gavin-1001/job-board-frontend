@@ -1,5 +1,6 @@
 import {forwardRef, useImperativeHandle, useState} from "react";
 import {Modal} from "react-bootstrap";
+import Button from "../Button/Button";
 
 
 const JobDeleteModal = forwardRef((props, ref) => {
@@ -17,6 +18,7 @@ const JobDeleteModal = forwardRef((props, ref) => {
     };
 
     return (
+
         <Modal show={show}>
             <div className="modal-header">
                 <h5 className="modal-title">Delete Job?</h5>
@@ -27,7 +29,7 @@ const JobDeleteModal = forwardRef((props, ref) => {
                 ></button>
             </div>
 
-            <div className="modal-body">Are you sure to delete this employee?</div>
+            <div className="modal-body">Are you sure to delete this job?</div>
 
             <div className="modal-footer">
                 <button
