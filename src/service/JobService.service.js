@@ -22,7 +22,7 @@ class JobService {
     }
 
     editJob(job){
-        return axios.put(BASE_URL + '/update/' + job.id, {headers: authHeaders()});
+        return axios.put(BASE_URL + '/update/' + job, {headers: authHeaders()});
     }
 
 

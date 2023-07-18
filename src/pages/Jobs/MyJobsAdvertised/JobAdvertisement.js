@@ -40,12 +40,27 @@ const JobAdvertisement = () => {
     };
 
     const updateJobRequest = (item) => {
-        //setJobSelect(job);
-        setJobSelect(Object.assign({}, item));
+        setJobSelect(item);
+//        setJobSelect(Object.assign({}, item));
         //console.log("is being edited: "+job);
         editJobComponent.current?.showEmployeeModal();
     }
 
+    const watchSaveJob = (job) => {
+        let itemIndex = jobList.findIndex((item) => item.id === job.id);
+        if(itemIndex !== -1){
+            const newList = jobList.map((item) => {
+                if(item.id === job.id){
+                    return job;
+                }
+                return item;
+            });
+            setJobList(newList);
+        }else{
+            const newList = jobList.concat(job);
+            setJobList(newList);
+        }
+    };
 
 
     return (
@@ -108,9 +123,12 @@ const JobAdvertisement = () => {
                 ref={deleteJobComponent}
                 onConfirmed={() => deleteJob()}
             />
-            <JobEditModal  ref={editJobComponent}
-                onConfirmed={() => updateJobRequest()}
+            <JobEditModal
+                ref={editJobComponent}
+                job={jobSelect}
+                onSaved={(e) => watchSaveJob(e)}
             />
+
 
         </div>
     ) //end of return

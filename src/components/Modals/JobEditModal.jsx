@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
 
 import {Modal} from "react-bootstrap";
-import jobServiceService from "../../service/JobService.service";
+import jobService from "../../service/JobService.service";
 
 const JobEditModal = forwardRef((props, ref) => {
     useImperativeHandle(ref, () => ({
@@ -42,6 +42,7 @@ const JobEditModal = forwardRef((props, ref) => {
             return <Navigate to={{pathname: "/login"}}/>;
         }
         if (
+            !job.id ||
             !job.jobTitle ||
             !job.jobDescription ||
             !job.jobSalary ||
@@ -53,8 +54,9 @@ const JobEditModal = forwardRef((props, ref) => {
         ) {
             return;
         }
-        jobServiceService
-            .editJob(job)
+        JSON.stringify(job);
+        jobService
+            .editJob(job.id)
             .then((response) => {
                 //...
                 props.onSaved(response.data);
