@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import User from '../../common/models/User';
+import AuthUser from '../../common/models/AuthUser';
 import {Link, useNavigate} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import AuthService from '../../service/AuthService.service';
@@ -11,7 +11,7 @@ import {faUserCircle} from "@fortawesome/free-solid-svg-icons/faUserCircle";
 
 
 const Register = () => {
-    const [user, setUser] = useState(new User("", ""));
+    const [user, setUser] = useState(new AuthUser("", ""));
     const [loading, setLoading] = useState(false); //sets a loading state to let the user know the page is loading
     const [submitted, setSubmitted] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");

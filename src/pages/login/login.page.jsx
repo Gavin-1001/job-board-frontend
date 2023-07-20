@@ -2,12 +2,12 @@ import {Link, useNavigate} from "react-router-dom";
 import {setCurrentUser} from "../../redux/store/actions/users";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import User from "../../common/models/User";
+import AuthUser from "../../common/models/AuthUser";
 import AuthService from '../../service/AuthService.service';
 
 
 const Login = () => {
-    const [user, setUser] = useState(new User("", "", ""));
+    const [user, setUser] = useState(new AuthUser("", "", ""));
     const [loading, setLoading] = useState(false); //sets a loading state to let the user know the page is loading
     const [submitted, setSubmitted] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
