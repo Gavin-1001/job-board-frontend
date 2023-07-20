@@ -4,8 +4,9 @@ import {useEffect, useRef, useState} from "react";
 import './postJob.css';
 import JobService from "../../../service/JobService.service";
 import Job from "../../../common/models/Job";
-import {Navigate, useNavigate} from "react-router-dom";
+import {Navigate, NavLink, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
+import {Nav} from "react-bootstrap";
 
 
 const PostJob = () => {

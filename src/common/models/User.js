@@ -1,12 +1,12 @@
 export default class Users{
-    constructor(id, firstName, lastName, emailAddress, dateOfBirth, phoneNumber, homeCity, homeCountry, homeAreaCode, homeAddress, collegeDegree, collegeName, collegeGrade) {
+    constructor(id, firstName, lastName, emailAddress, dateOfBirth, phoneNumber, homeCity, homeCountry, homeAreaCode, streetAddress, collegeDegree, collegeName, collegeGrade) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
         this.dateOfBirth = dateOfBirth;
         this.phoneNumber = phoneNumber;
-        this.homeAddress = homeAddress;
+        this.streetAddress = streetAddress;
         this.homeCity = homeCity;
         this.homeAreaCode = homeAreaCode;
         this.homeCountry = homeCountry;

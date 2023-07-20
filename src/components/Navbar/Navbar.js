@@ -38,11 +38,24 @@ const Navbar = ({links}) => {
                         </li>
                     ))}
                 </ul>
-                <li className="nav-item">
-                    <Link to="/logout" className="nav-link" onClick={() => logout()}>
-                        Logout
-                    </Link>
-                </li>
+
+                {/*<li className="nav-item">*/}
+                {/*    <Link to="/logout" className="nav-link" onClick={() => logout()}>*/}
+                {/*        Logout*/}
+                {/*    </Link>*/}
+                {/*</li>*/}
+                <div className="dropdown">
+                    <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        {currentUser.username}
+                    </a>
+
+                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a className="dropdown-item" href="#">Action</a></li>
+                        <li><a className="dropdown-item" href="#">Another action</a></li>
+                        <li><a className="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
 
             </nav>
     );

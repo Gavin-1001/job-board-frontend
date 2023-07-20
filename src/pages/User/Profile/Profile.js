@@ -1,7 +1,7 @@
 import './Profile.css';
 import EmployerSidebar from "../../../components/Sidebar/EmployerSidebar";
-import {useState} from "react";
-import Button from "../../../components/Button/Button";
+import React, {useState} from "react";
+
 
 const Profile = () => {
 
@@ -93,13 +93,13 @@ const Profile = () => {
                       </div>
 
                       <div>
-                          <label htmlFor="homeAddress" className="job-form-label">
+                          <label htmlFor="streetAddress" className="job-form-label">
                               Home Address:
                           </label>
                           <input type="text"
-                                 id="homeAddress"
-                                 name="homeAddress"
-                                 value={formData.homeAddress}
+                                 id="streetAddress"
+                                 name="streetAddress"
+                                 value={formData.streetAddress}
                                  onChange={handleFormSubmit}
                                  required
                                  className="job-form-input" />
