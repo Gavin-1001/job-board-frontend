@@ -3,6 +3,7 @@
   text-align: center;
   /* remove the text align */
   margin-left: 210px;
+  margin-bottom: 60px; /* Add some bottom margin to create space for the fixed footer */
 }
 
 .App-logo {

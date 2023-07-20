@@ -127,6 +127,7 @@ const JobAdvertisement = () => {
                             )}
                         </div>
 
+
                     </div>
                 </div>
                 <JobDeleteModal

@@ -1,7 +1,8 @@
 import React from "react";
 import './EmployerSidebar.css'
-import { NavLink } from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
+import logout from "../../pages/Logout";
 
 
 
@@ -34,11 +35,11 @@ const EmployerSidebar = () => {
                     {/* <li className="nav-item">
             <NavLink to="/profile">{currentUser.name}</NavLink>
           </li> */}
-                    {/*<li className="nav-item">*/}
-                    {/*    <Link to="/logout" className="nav-link" onClick={() => logout()}>*/}
-                    {/*        Logout*/}
-                    {/*    </Link>*/}
-                    {/*</li>*/}
+                    <li className="nav-item">
+                        <Link to="/profile" className="nav-link" onClick={() => console.log("profile")}>
+                            Profile
+                        </Link>
+                    </li>
                 </div>
             )}
         </div>

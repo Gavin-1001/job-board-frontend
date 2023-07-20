@@ -1,10 +1,7 @@
 .footer {
-    background-color: #f1f1f1;
-    padding: 20px;
-    text-align: center;
-    position: relative;
-    left: 0;
-    bottom: 0;
-    width: 108.5%;
-    margin-top: 2.5rem;
+   background-color: rgba(0, 0, 0, 0.2);
+   height: 60px; /* Set the height of the footer */
+   line-height: 60px; /* Align the text vertically in the middle of the footer */
+   /* Add any other styles you want for the footer */
+
 }

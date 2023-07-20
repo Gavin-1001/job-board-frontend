@@ -17,6 +17,8 @@ import JobAdvertisement from "./pages/Jobs/MyJobsAdvertised/JobAdvertisement";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import Footer from "./components/Footer/Footer";
+import React from "react";
+import Profile from "./pages/User/Profile/Profile";
 
 
 function App() {
@@ -25,6 +27,10 @@ function App() {
         {url: '/signin', text: 'Signin'},
         {url: '/about', text: 'About'}
     ];
+
+
+
+
     return (
         <BrowserRouter>
 
@@ -32,7 +38,8 @@ function App() {
 
             <div>
                 {/*<TestNavbar links={links} />*/}
-                <Navbar links={linksForNavbar}/>
+                <Navbar links={linksForNavbar} />
+
                 {/* Rest of your application */}
             </div>
 
@@ -66,10 +73,13 @@ function App() {
                     }
                     />
 
+
+
                     <Route path="/jobListings" element={<AuthGuard><JobListings/></AuthGuard>}/>
                     <Route path="/jobsAdvertisement" element={<AuthGuard><JobAdvertisement/></AuthGuard>}/>
                     <Route path="/logout" element={<Logout/>}/>
                     <Route path="/about" element={<About/>}/>
+                    <Route path="/profile" element={<Profile/>}/>
                     <Route path="*" element={<NotFound/>}/>
                 </Routes>
                 <Footer/>
@@ -80,3 +90,5 @@ function App() {
 }
 
 export default App;
+
+
