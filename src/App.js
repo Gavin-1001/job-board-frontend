@@ -19,6 +19,7 @@ import Home from "./pages/Home/Home";
 import Footer from "./components/Footer/Footer";
 import React from "react";
 import Profile from "./pages/User/Profile/Profile";
+import Settings from "./pages/User/Settings/Settings";
 
 
 function App() {
@@ -80,6 +81,7 @@ function App() {
                     <Route path="/logout" element={<Logout/>}/>
                     <Route path="/about" element={<About/>}/>
                     <Route path="/profile" element={<Profile/>}/>
+                    <Route path="/settings" element={<AuthGuard><Settings /></AuthGuard>} />
                     <Route path="*" element={<NotFound/>}/>
                 </Routes>
                 <Footer/>

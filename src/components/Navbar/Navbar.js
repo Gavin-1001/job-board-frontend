@@ -2,11 +2,9 @@
 import React from "react";
 import './Navbar.css'
 
-import {Link, NavLink, useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {clearCurrentUser} from "../../redux/store/actions/users";
-import Dropdown from "../Dropdown/Dropdown";
-
 
 const Navbar = ({links}) => {
 
