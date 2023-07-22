@@ -42,10 +42,12 @@ const Navbar = ({links}) => {
                 {/*        Logout*/}
                 {/*    </Link>*/}
                 {/*</li>*/}
+
+                {currentUser &&
                 <div className="dropdown">
                     <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                        data-bs-toggle="dropdown" aria-expanded="false">
-                        {currentUser.username} {/*todo-> This causes an error when you logout, {currentUser is NULL} */}
+                        {/*  {currentUser.username} todo->This causes an error when you logout, {currentUser is NULL} */}
                     </a>
 
                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -54,6 +56,7 @@ const Navbar = ({links}) => {
                         <li><NavLink to="/logout" className="dropdown-item" onClick={() => logout()}>Logout</NavLink></li>
                     </ul>
                 </div>
+            }
 
             </nav>
     );

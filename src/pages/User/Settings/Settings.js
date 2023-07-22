@@ -4,6 +4,7 @@ import {useSelector} from "react-redux";
 import {Navigate, useNavigate} from "react-router-dom";
 import User from "../../../common/models/User";
 import UserService from "../../../service/UserService.service";
+import userServiceService from "../../../service/UserService.service";
 
 const Settings = () => {
 
@@ -13,27 +14,14 @@ const Settings = () => {
     const [user, setUser] = useState(new User("", "", "", "", "", "", "", "", "", "", "", "", ""))
     const [errorMessage, setErrorMessage] = useState("");
 
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        emailAddress: '',
-        dateOfBirth: '',
-        phoneNumber: '',
-        homeCity: '',
-        homeCountry: '',
-        homeAreaCode: '',
-        streetAddress: '',
-        collegeDegree: '',
-        collegeName: '',
-        collegeGrade: '',
-    });
+
 
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        setSubmitted(false)
+        setSubmitted(true)
         if (!currentUser.id) {
-            return <Navigate to={{pathname: "/login"}}/>;
+            return <Navigate to={{ pathname: "/login" }} />;
         }
         if (
             !user.firstName ||
@@ -41,6 +29,7 @@ const Settings = () => {
             !user.emailAddress ||
             !user.dateOfBirth ||
             !user.phoneNumber ||
+            !user.userGender ||
             !user.streetAddress ||
             !user.homeCity ||
             !user.homeAreaCode ||
@@ -49,15 +38,18 @@ const Settings = () => {
             !user.collegeName ||
             !user.collegeGrade
         ) {
-
-            UserService.postUserDetails(formData).then((_) => {
-                console.log(formData);
-                navigate("/");
-            }).catch((err) => {
-                setErrorMessage("There was an unexpected error");
-                console.log(err);
-            })
+            return;
         }
+        UserService
+            .postUserDetails(user)
+            .then((response) => {
+                //...
+                setSubmitted(false);
+            })
+            .catch((err) => {
+                setErrorMessage("Unexpected error occurred.");
+                console.log(err);
+            });
     }
 
 
@@ -65,6 +57,7 @@ const Settings = () => {
         <div className="container">
             <Sidebar/>
             <div className="moveIn">
+                <div>Settings</div>
                 <form onSubmit={handleFormSubmit} className="job-form-container">
                     <div>
                         <label htmlFor="firstName" className="job-form-label">
@@ -73,7 +66,7 @@ const Settings = () => {
                         <input type="text"
                                id="firstName"
                                name="firstName"
-                               value={formData.firstName}
+                               value={User.firstName}
                                onChange={handleFormSubmit}
                                required
                                className="job-form-input"/>
@@ -86,7 +79,7 @@ const Settings = () => {
                         <input type="text"
                                id="lastName"
                                name="lastName"
-                               value={formData.lastName}
+                               value={User.lastName}
                                onChange={handleFormSubmit}
                                required
                                className="job-form-input"/>
@@ -99,7 +92,7 @@ const Settings = () => {
                         <input type="text"
                                id="emailAddress"
                                name="emailAddress"
-                               value={formData.emailAddress}
+                               value={User.emailAddress}
                                onChange={handleFormSubmit}
                                required
                                className="job-form-input"/>
@@ -112,7 +105,7 @@ const Settings = () => {
                         <input type="date"
                                id="dateOfBirth"
                                name="dateOfBirth"
-                               value={formData.dateOfBirth}
+                               value={User.dateOfBirth}
                                onChange={handleFormSubmit}
                                required
                                className="job-form-input"/>
@@ -127,7 +120,7 @@ const Settings = () => {
                                name="phoneNumber"
                                pattern="\d*"
                                maxLength={12}
-                               value={formData.phoneNumber}
+                               value={User.phoneNumber}
                                onChange={handleFormSubmit}
                                required
                                className="job-form-input"/>
@@ -140,7 +133,7 @@ const Settings = () => {
                         <input type="text"
                                id="streetAddress"
                                name="streetAddress"
-                               value={formData.streetAddress}
+                               value={User.streetAddress}
                                onChange={handleFormSubmit}
                                required
                                className="job-form-input"/>
@@ -153,7 +146,7 @@ const Settings = () => {
                         <input type="text"
                                id="homeCity"
                                name="homeCity"
-                               value={formData.homeCity}
+                               value={User.homeCity}
                                onChange={handleFormSubmit}
                                required
                                className="job-form-input"/>
@@ -166,7 +159,7 @@ const Settings = () => {
                         <input type="text"
                                id="homeAreaCode"
                                name="homeAreaCode"
-                               value={formData.homeAreaCode}
+                               value={User.homeAreaCode}
                                onChange={handleFormSubmit}
                                required
                                className="job-form-input"/>
@@ -179,7 +172,7 @@ const Settings = () => {
                         <input type="text"
                                id="homeCountry"
                                name="homeCountry"
-                               value={formData.homeCountry}
+                               value={User.homeCountry}
                                onChange={handleFormSubmit}
                                required
                                className="job-form-input"/>
@@ -192,7 +185,7 @@ const Settings = () => {
                         <input type="text"
                                id="collegeDegree"
                                name="collegeDegree"
-                               value={formData.collegeDegree}
+                               value={User.collegeDegree}
                                onChange={handleFormSubmit}
                                required
                                className="job-form-input"/>
@@ -205,7 +198,7 @@ const Settings = () => {
                         <input type="text"
                                id="collegeName"
                                name="collegeName"
-                               value={formData.collegeName}
+                               value={User.collegeName}
                                onChange={handleFormSubmit}
                                required
                                className="job-form-input"/>
@@ -218,7 +211,7 @@ const Settings = () => {
                         <input type="text"
                                id="collegeGrade"
                                name="collegeGrade"
-                               value={formData.collegeGrade}
+                               value={User.collegeGrade}
                                onChange={handleFormSubmit}
                                required
                                className="job-form-input"/>

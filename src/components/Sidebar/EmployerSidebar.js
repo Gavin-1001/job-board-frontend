@@ -5,11 +5,10 @@ import {useSelector} from "react-redux";
 import logout from "../../pages/Logout";
 
 
-
 const EmployerSidebar = () => {
 
 
-     const currentUser = useSelector((state) => state.user);
+    const currentUser = useSelector((state) => state.user);
     // const dispatch = useDispatch();
     // const navigate = useNavigate();
     //
@@ -30,18 +29,7 @@ const EmployerSidebar = () => {
             </ul>
 
             {/*LOGOUT*/}
-            {currentUser && (
-                <div className="navbar-nav">
-                    {/* <li className="nav-item">
-            <NavLink to="/profile">{currentUser.name}</NavLink>
-          </li> */}
-                    <li className="nav-item">
-                        <Link to="/profile" className="nav-link" onClick={() => console.log("profile")}>
-                            Profile
-                        </Link>
-                    </li>
-                </div>
-            )}
+
         </div>
     );
 };

@@ -8,9 +8,9 @@ const BASE_URL = BASE_API_URL + '/api/user/';
 class UserService {
 
     postUserDetails(user){
-        return axios.post(BASE_URL+'/', {headers: authHeaders()});
+        return axios.post(BASE_URL+'profile', user, {headers: authHeaders()});
     }
 
 }
 
-export default UserService;
+export default new UserService();
